@@ -1,0 +1,26 @@
+{
+  "name": "indexador-produtos",
+  "version": "1.0.0",
+  "description": "Indexar produtos provenientes de paginas Web",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Kassandra Janis",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.4",
+    "config": "^3.3.6",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "helmet": "^4.6.0",
+    "jest-cli": "^27.2.0",
+    "js-yaml": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongodb": "^4.1.2",
+    "puppeteer": "^10.2.0",
+    "swagger-tools": "^0.10.4",
+    "swagger-ui-express": "^4.1.6",
+    "tracer": "^1.1.5"
+  }
+}

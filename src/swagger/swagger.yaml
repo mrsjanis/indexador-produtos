@@ -1,0 +1,100 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: API Indexador Produtos
+  description: ""
+host: localhost:3000
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+tags:
+  - name: Login
+  - name: Produtos
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
+    description: Para acessar a API, um token JWT válido deve ser transmitido em todas as requests, Authorization header. Um token JWT válido é gerado pela API e retornado como resposta de uma chamada para a rota /login dando um usuário e senha válidos. A seguinte sintaxe deve ser utilizada no Authorization header Bearer xxxxxx.yyyyyyy.zzzzzz
+paths:
+  /login:
+    x-swagger-router-controller: loginController
+    post:
+      tags:
+        - Login
+      summary: Autentica na aplicação
+      operationId: postLogin
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              username:
+                type: string
+              password:
+                type: string
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+
+  /recuperarProduto: 
+    x-swagger-router-controller: indexadorController
+    get:
+      tags:
+        - Produtos
+      security:
+        - Bearer: []
+      summary: Recupera as informações do Produto
+      operationId: getProduto  
+      parameters:
+        - in: body
+          name: body
+          required: true
+          schema:
+            type: object
+            properties:
+              url:
+                type: string
+          description: Url do site 
+      responses:
+        200:
+          description: success
+          schema:
+            type: object
+            properties:
+              titulo:
+                type: string
+              imagem:
+                type: string
+              preco:
+                type: number
+              descricao:
+                type: string
+              url:
+                type: string
+        default:
+          description: error
+          schema:
+            $ref: "#/definitions/error"
+definitions:
+  error:
+    type: object
+    properties:
+      text:
+        type: string
+  #requests
